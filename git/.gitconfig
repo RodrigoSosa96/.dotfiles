@@ -13,7 +13,7 @@
 	name = Rodrigo Sosa
 	email = rod2008@live.com.ar
 [credential]
-	helper = cache --timeout 3600
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [init]
 	defaultBranch = main
 [alias]

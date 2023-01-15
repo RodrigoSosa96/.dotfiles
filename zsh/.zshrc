@@ -80,12 +80,16 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  docker
-  # docker-compose
-  # extract
-  # zsh-z
-  # zsh-syntax-highlighting
-  # zsh-autosuggestions
+  sudo
+  dirhistory
+  web-search
+  alias-finder # temp
+  dotenv
+  extract
+  z
+  you-should-use # Testing
+  zsh-syntax-highlighting
+  zsh-autosuggestions
   )
 
 source $ZSH/oh-my-zsh.sh
@@ -119,11 +123,15 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-if [ $(command -v direnv) ]; then
-    eval "$(direnv hook zsh)"
-fi
-
+# FIX WEIRD WSL INTEROP ERROR
+# fix_wsl2_interop() {
+#     for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+#         if [[ -e "/run/WSL/${i}_interop" ]]; then
+#             export WSL_INTEROP=/run/WSL/${i}_interop
+#         fi
+#     done
+# }
+export WSL_INTEROP="/run/WSL/$(ls -tr /run/WSL | head -n1)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
