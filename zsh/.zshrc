@@ -79,6 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  fzf-tab
   git
   sudo
   dirhistory
@@ -87,10 +88,13 @@ plugins=(
   dotenv
   extract
   z
+  fzf
   you-should-use # Testing
   zsh-syntax-highlighting
   zsh-autosuggestions
   )
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
 
 source $ZSH/oh-my-zsh.sh
 
