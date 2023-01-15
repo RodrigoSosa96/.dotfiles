@@ -22,10 +22,10 @@ sudo apt install stow
 Generar Symlinks y aplicar configuración:
 ```bash
 # Checkear archivos a cambiar
-stow -nvt ~ *
+stow -nvt ~ */
 
 # Aplicar cambios si todos son correctos
-stow --adopt -vt ~ *
+stow --adopt -vt ~ */
 ```
 
 
@@ -36,7 +36,7 @@ stow --adopt -vt ~ *
 | Comando                | Ejemplos                                                                                  |
 |:---------------------- | ----------------------------------------------------------------------------------------- |
 | `stow -nvt ~ git`      | `Checkea y muestra los cambios que hará. Agrega la carpeta git al directorio personal ~ ` |
-| `stow --adopt -vt ~ *` | ` Agregar todas las carpetas al directorio raiz, * selecciona todos los directorios.`     |
+| `stow --adopt -vt ~ */` | ` Agregar todas las carpetas al directorio raiz, * selecciona todos los directorios "hijos".`     |
 | `stow -vDt ~ bash`     | `Desenlaza link con archivos bash. No borra el archivo en la raiz, solo remueve el link`                                                                   |
 | `stow -- adopt -vt ~ work` | `Avanzado. Estando en la carpeta bash agrego los links para work o  testing, en este caso work. En caso de querer cambiar a testing, eliminar el link cono -D y luego ejecutar el comando` |
  
