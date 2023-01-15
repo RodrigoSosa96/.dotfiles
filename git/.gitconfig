@@ -1,0 +1,26 @@
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = vscode
+	conflictStyle = diff3
+[mergetool]
+	keepBackup = false
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[user]
+	name = Rodrigo Sosa
+	email = rod2008@live.com.ar
+[credential]
+	helper = cache --timeout 3600
+[init]
+	defaultBranch = main
+[alias]
+    cm = commit -m
+    l = log --relative-date --graph --abbrev-commit -10
+    ll = log --relative-date --graph --abbrev-commit
+	s = status -s
+
+[format]
+    pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s
