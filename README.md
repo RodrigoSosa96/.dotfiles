@@ -15,10 +15,15 @@ Antes de aplicar configuración tener instaladas los programas listados.
 
 Instalar Stow y clonar este repositorio preferentemente en la carpeta del usuario
 
-
 ```bash
 sudo apt install stow
 ```
+Descargar submodules
+```bash
+git submodule init
+git submodule update
+```
+
 Generar Symlinks y aplicar configuración:
 ```bash
 # Checkear archivos a cambiar

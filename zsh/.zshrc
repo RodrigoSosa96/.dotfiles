@@ -87,13 +87,13 @@ plugins=(
   alias-finder # temp
   dotenv
   extract
-  z
+  # z
   fzf
   you-should-use # Testing
   zsh-syntax-highlighting
   zsh-autosuggestions
   )
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border --preview "batcat --style=numbers --color=always --line-range :500 {}"'
 
 
 source $ZSH/oh-my-zsh.sh
