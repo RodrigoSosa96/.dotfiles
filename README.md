@@ -18,10 +18,10 @@ Instalar Stow y clonar este repositorio preferentemente en la carpeta del usuari
 ```bash
 sudo apt install stow
 ```
-Descargar submodules
+
+Clonar y descargar submodulos
 ```bash
-git submodule init
-git submodule update
+git clone --recurse-submodules -j3 https://github.com/RodrigoSosa96/dotfiles.git
 ```
 
 Generar Symlinks y aplicar configuración:
