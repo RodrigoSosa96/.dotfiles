@@ -88,6 +88,7 @@ plugins=(
   dotenv
   extract
   # z
+  aws
   fzf
   you-should-use # Testing
   zsh-syntax-highlighting
@@ -125,6 +126,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias l="ls -lAh"
 alias open="explorer.exe"
+alias cdk="npx aws-cdk"
 # alias codef='code $1 && exit'
 codef() {
   code $1 && exit
@@ -146,3 +148,8 @@ export WSL_INTEROP="/run/WSL/$(ls -tr /run/WSL | head -n1)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/rodrigo/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
