@@ -93,11 +93,13 @@ plugins=(
   you-should-use # Testing
   zsh-syntax-highlighting
   zsh-autosuggestions
+  per-directory-history
   )
-export FZF_DEFAULT_OPTS='--height 80% --layout=reverse --border --preview "batcat --style=numbers --color=always --line-range :500 {}"'
-
 
 source $ZSH/oh-my-zsh.sh
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden" 
+export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --preview "batcat --style=numbers --color=always --line-range :500 {}"'
 
 # User configuration
 
@@ -148,7 +150,10 @@ export WSL_INTEROP="/run/WSL/$(ls -tr /run/WSL | head -n1)"
 
 # pnpm
 export PNPM_HOME="/home/rodrigo/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 export NVM_DIR="$HOME/.nvm"
@@ -175,3 +180,6 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
