@@ -15,7 +15,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -85,7 +84,7 @@ plugins=(
   dirhistory
   web-search
   alias-finder # temp
-  dotenv
+  # dotenv // es molesto
   extract
   # z
   aws
@@ -94,7 +93,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   per-directory-history
-  )
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +103,7 @@ export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --preview "batca
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export BROWSER=/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -126,9 +126,12 @@ export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --preview "batca
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias l="ls -lAh"
 alias open="explorer.exe"
 alias cdk="npx aws-cdk"
+alias nvm="fnm"
+
 # alias codef='code $1 && exit'
 codef() {
   code $1 && exit
@@ -137,49 +140,20 @@ codef() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# FIX WEIRD WSL INTEROP ERROR
-# fix_wsl2_interop() {
-#     for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
-#         if [[ -e "/run/WSL/${i}_interop" ]]; then
-#             export WSL_INTEROP=/run/WSL/${i}_interop
-#         fi
-#     done
-# }
-export WSL_INTEROP="/run/WSL/$(ls -tr /run/WSL | head -n1)"
+# fnm
+export PATH="/home/rodrigo/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
+
+# Turso
+export PATH="/home/rodrigo/.turso:$PATH"
+
+# bun completions
+[ -s "/home/rodrigo/.config/sst/_bun" ] && source "/home/rodrigo/.config/sst/_bun"
+
+# sst
+export PATH=/home/rodrigo/.sst/bin:$PATH
 
 
-# pnpm
-export PNPM_HOME="/home/rodrigo/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
