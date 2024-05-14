@@ -12,19 +12,15 @@
 [user]
 	name = Rodrigo Sosa
 	email = rod2008@live.com.ar
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+[credential]
+	helper = credential-manager
 [init]
 	defaultBranch = main
 [alias]
     cm = commit -m
     l = log --relative-date --graph --abbrev-commit -10
     ll = log --relative-date --graph --abbrev-commit
-	s = status -s
+		s = status -s
 
 [format]
     pretty = format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s

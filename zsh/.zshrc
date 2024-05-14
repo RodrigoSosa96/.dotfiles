@@ -25,8 +25,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
+ 
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
@@ -98,12 +97,12 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden" 
-export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --preview "batcat --style=numbers --color=always --line-range :500 {}"'
+export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --preview "bat --style=numbers --color=always --line-range :500 {}"'
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export BROWSER=/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -128,9 +127,10 @@ export BROWSER=/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias l="ls -lAh"
-alias open="explorer.exe"
 alias cdk="npx aws-cdk"
 alias nvm="fnm"
+# alias docker="podman"
+
 
 # alias codef='code $1 && exit'
 codef() {
@@ -141,19 +141,23 @@ codef() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # fnm
-export PATH="/home/rodrigo/.local/share/fnm:$PATH"
+export PATH="/home/rodrigososa/.local/share/fnm:$PATH"
 eval "$(fnm env --use-on-cd)"
 
-# Turso
-export PATH="/home/rodrigo/.turso:$PATH"
-
-# bun completions
-[ -s "/home/rodrigo/.config/sst/_bun" ] && source "/home/rodrigo/.config/sst/_bun"
 
 # sst
-export PATH=/home/rodrigo/.sst/bin:$PATH
+export PATH=/home/rodrigososa/.sst/bin:$PATH
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Turso
+export PATH="/home/rodrigososa/.turso:$PATH"
